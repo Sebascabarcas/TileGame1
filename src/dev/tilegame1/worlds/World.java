@@ -9,6 +9,7 @@ import dev.tilegame1.Handler;
 import dev.tilegame1.Music.Music;
 import dev.tilegame1.entities.EntityManager;
 import dev.tilegame1.entities.creatures.Player;
+import dev.tilegame1.entities.statics.Hospital;
 import dev.tilegame1.entities.statics.Tree;
 import dev.tilegame1.tiles.Tile;
 import dev.tilegame1.utils.Utils;
@@ -23,6 +24,7 @@ public class World {
     private int width, height;
     private int spawnX, spawnY;
     private int[][] tiles;
+    
     //Entities
     private EntityManager entityManager;
     
@@ -32,9 +34,25 @@ public class World {
           
           this.handler = handler;
           entityManager = new EntityManager(handler, new Player(handler,100,100));
-          entityManager.addEntity(new Tree(handler, 150, 100));
-          entityManager.addEntity(new Tree(handler, 250, 100));
+         
+           entityManager.addEntity(new Tree(handler, 30,-30));
+          for (int i = 0; i < 1000; i = i +50) {
+            entityManager.addEntity(new Tree(handler, i+47, -30));
+          }
+          for (int i = 0; i < 1000; i = i +50) {
+            entityManager.addEntity(new Tree(handler, i, 680));
+          }
+          entityManager.addEntity(new Tree(handler, 700,-40));
+          for (int i = -30; i < 650; i = i +30) {
+            entityManager.addEntity(new Tree(handler, 700, i));
+          }
+           for (int i = -40; i < 650; i = i +30) {
+            entityManager.addEntity(new Tree(handler, 0, i));
+          }
+          entityManager.addEntity(new Tree(handler, 700,655));
+          entityManager.addEntity(new Tree(handler, 0,655));
           
+          entityManager.addEntity(new Hospital(handler, 250, 300));
           loadWorld(path);
           
           entityManager.getPlayer().setX(spawnX);
@@ -53,6 +71,9 @@ public class World {
     public void render(Graphics g){
         int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILEWIDTH);
         int xEnd = (int) Math.min(width,(handler.getGameCamera().getxOffset()+handler.getWidth()) / Tile.TILEWIDTH + 1);
+       
+       // System.out.println(entityManager.getPlayer().getX());
+        //System.out.println(yy);
         int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILEHEIGHT);
         int yEnd = (int) Math.min(height, (handler.getGameCamera().getyOffset() + handler.getHeight()) / Tile.TILEHEIGHT + 1);
         for (int y = yStart; y < yEnd; y++) {

@@ -8,60 +8,91 @@ package dev.tilegame1.gfx;
 import java.awt.image.BufferedImage;
 
 public class Assets {
-	
-	private static final int width = 32, height = 32, height1 = 24, width1 = 16;
-	
-	public static BufferedImage player, dirt, grass, stone, tree, grama, hospital, tienda, arbol2,gym;
-        public static BufferedImage[] player_down, player_up, player_left, player_right;
-        public static BufferedImage[] btn_start;
+
+    private static final int width = 32, height = 32, height1 = 24, width1 = 16;
+
+    public static BufferedImage player, dirt, grass, stone, tree, treebig, grama, hospital, tienda, arbol2, gym, batalla, flores;
+    public static BufferedImage[] player_down, player_up, player_left, player_right;
+    public static BufferedImage[] btn_start, run, fight, bag, pokemones, moves;
+
+    public static void init() {
+        SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/res/textures/sheet.png"));
+        SpriteSheet sheetplayer = new SpriteSheet(ImageLoader.loadImage("/res/textures/dog.png"));
+        SpriteSheet sheet1 = new SpriteSheet(ImageLoader.loadImage("/res/textures/sheet2.png"));
+        SpriteSheet sheetRecursosPng = new SpriteSheet(ImageLoader.loadImage("/res/textures/spritesAmbienteAux.png"));
+        SpriteSheet bb = new SpriteSheet(ImageLoader.loadImage("/res/textures/bb.png"));
+        SpriteSheet rb = new SpriteSheet(ImageLoader.loadImage("/res/textures/rb.png"));
+        SpriteSheet fb = new SpriteSheet(ImageLoader.loadImage("/res/textures/fb.png"));
+        SpriteSheet bagb = new SpriteSheet(ImageLoader.loadImage("/res/textures/bagb.png"));
+        SpriteSheet pb = new SpriteSheet(ImageLoader.loadImage("/res/textures/pb.png"));
+        SpriteSheet treeM = new SpriteSheet(ImageLoader.loadImage("/res/textures/TreeMedium.png"));
+        SpriteSheet rock = new SpriteSheet(ImageLoader.loadImage("/res/textures/rock1.png"));
+        SpriteSheet Grass = new SpriteSheet(ImageLoader.loadImage("/res/textures/Grass.png"));
+        SpriteSheet Flower = new SpriteSheet(ImageLoader.loadImage("/res/textures/Planta4.png"));
+        SpriteSheet Moves = new SpriteSheet(ImageLoader.loadImage("/res/textures/Moves.png"));
         
-        
-	public static void init(){
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/res/textures/sheet.png"));
-		SpriteSheet sheetplayer = new SpriteSheet(ImageLoader.loadImage("/res/textures/dog.png"));
-                SpriteSheet sheet1 = new SpriteSheet(ImageLoader.loadImage("/res/textures/sheet2.png"));
-                SpriteSheet sheetRecursosPng = new SpriteSheet(ImageLoader.loadImage("/res/textures/spritesAmbienteAux.png"));
-                btn_start = new BufferedImage[2];
-		btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);
-		btn_start[1] = sheet.crop(width * 6, height * 5, width * 2, height);
-      
-                player_down = new BufferedImage[4];
-                player_up = new BufferedImage[4];
-                player_left = new BufferedImage[4];
-                player_right = new BufferedImage[4];
-                
-                 player_down[0] = sheetplayer.crop(0, 0, width1, height1);
+        moves= new BufferedImage[2];
+        moves[0] = Moves.crop(0, 0, 240 , 48);
+        moves[1] = Moves.crop(0, 0, 240 , 48);
+        btn_start = new BufferedImage[2];
+        btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);
+        btn_start[1] = sheet.crop(width * 6, height * 5, width * 2, height);
+
+        run = new BufferedImage[2];
+        run[0] = rb.crop(0, 0, 54, 18);
+        run[1] = rb.crop(54, 0, 54, 18);
+
+        fight = new BufferedImage[2];
+        fight[0] = fb.crop(0, 0, 54, 18);
+        fight[1] = fb.crop(54, 0, 54, 18);
+
+        bag = new BufferedImage[2];
+        bag[0] = bagb.crop(0, 0, 54, 18);
+        bag[1] = bagb.crop(54, 0, 54, 18);
+
+        pokemones = new BufferedImage[2];
+        pokemones[0] = pb.crop(0, 0, 54, 18);
+        pokemones[1] = pb.crop(54, 0, 54, 18);
+
+        batalla = bb.crop(0, 0, 240, 160);
+
+        player_down = new BufferedImage[4];
+        player_up = new BufferedImage[4];
+        player_left = new BufferedImage[4];
+        player_right = new BufferedImage[4];
+
+        player_down[0] = sheetplayer.crop(0, 0, width1, height1);
         player_down[1] = sheetplayer.crop(width1, 0, width1, height1);
-        player_down[2] = sheetplayer.crop(width1*2, 0, width1, height1);
-        player_down[3] = sheetplayer.crop(width1*3, 0, width1, height1);
-        
+        player_down[2] = sheetplayer.crop(width1 * 2, 0, width1, height1);
+        player_down[3] = sheetplayer.crop(width1 * 3, 0, width1, height1);
+
         player_left[0] = sheetplayer.crop(0, height1, width1, height1);
         player_left[1] = sheetplayer.crop(width1, height1, width1, height1);
-        player_left[2] = sheetplayer.crop(width1*2, height1, width1, height1);
-        player_left[3] = sheetplayer.crop(width1*3, height1, width1, height1);
-        
-        player_right[0] = sheetplayer.crop(0, height1*2, width1, height1);
-        player_right[1] = sheetplayer.crop(width1, height1*2, width1, height1);
-        player_right[2] = sheetplayer.crop(width1*2, height1*2, width1, height1);
-        player_right[3] = sheetplayer.crop(width1*3, height1*2, width1, height1);
-        
-        player_up[0] = sheetplayer.crop(0, height1*3, width1, height1);
-        player_up[1] = sheetplayer.crop(width1, height1*3, width1, height1);
-        player_up[2] = sheetplayer.crop(width1*2, height1*3, width1, height1);
-        player_up[3] = sheetplayer.crop(width1*3, height1*3, width1, height1);
-		//tree = sheet.crop(0, 0, width, height *2);
-		dirt = sheet.crop(width, 0, width, height);
-		grass = sheetRecursosPng.crop(6, 64, 16, 16);
-		stone = sheet.crop(width * 3, 0, width, height);
-		//player = sheetplayer.crop(width1, 0, width1, height1);
-                grama = sheet1.crop(0, 16, 16, 16);
-                
+        player_left[2] = sheetplayer.crop(width1 * 2, height1, width1, height1);
+        player_left[3] = sheetplayer.crop(width1 * 3, height1, width1, height1);
+
+        player_right[0] = sheetplayer.crop(0, height1 * 2, width1, height1);
+        player_right[1] = sheetplayer.crop(width1, height1 * 2, width1, height1);
+        player_right[2] = sheetplayer.crop(width1 * 2, height1 * 2, width1, height1);
+        player_right[3] = sheetplayer.crop(width1 * 3, height1 * 2, width1, height1);
+
+        player_up[0] = sheetplayer.crop(0, height1 * 3, width1, height1);
+        player_up[1] = sheetplayer.crop(width1, height1 * 3, width1, height1);
+        player_up[2] = sheetplayer.crop(width1 * 2, height1 * 3, width1, height1);
+        player_up[3] = sheetplayer.crop(width1 * 3, height1 * 3, width1, height1);
+        //tree = sheet.crop(0, 0, width, height *2);
+        dirt = sheetRecursosPng.crop(242, 112, 7, 7);
+        grass = sheetRecursosPng.crop(6, 64, 16, 16);
+        stone = rock.crop(0, 0, 16, 16);
+        //player = sheetplayer.crop(width1, 0, width1, height1);
+        grama = sheet1.crop(0, 16, 16, 16);
+
          //Otros
-        
         hospital = sheetRecursosPng.crop(7, 157, 83, 72);
         tienda = sheetRecursosPng.crop(13, 248, 68, 66);
         gym = sheetRecursosPng.crop(89, 231, 114, 80);
-        tree = sheetRecursosPng.crop(163, 124, 16, 36);
+        tree = treeM.crop(0, 0, 32, 48);
+       
 //        arbol = sheetRecursos.crop(163, 124, 16, 36);
 //        letrero = sheetRecursos.crop(183, 58, 18, 19);
 //        matas = sheetRecursos.crop(35, 147, 17, 17);
@@ -71,7 +102,7 @@ public class Assets {
 //        
 //        //Definitivos
 //        arbolPeq = sheetRecursosTiles.crop(1, 1, 16, 16);//2
-//        flores = sheetRecursosTiles.crop(18, 1, 16, 16);//3
+          flores = Flower.crop(0, 0, 16, 16);
 //        cercaFro = sheetRecursosTiles.crop(35, 1, 16, 16);//4
 //        cercaLat = sheetRecursosTiles.crop(52, 1, 16, 16);//5
 //        //MATAS                                           6
@@ -92,5 +123,5 @@ public class Assets {
 //        letGris= sheetRecursosTiles.crop(69, 1, 16, 16);//21
 //        letCafe = sheetRecursosTiles.crop(86, 1, 14, 16);//22
 //        letGym = sheetRecursosTiles.crop(101, 1, 18, 22);//23
-	}
+    }
 }

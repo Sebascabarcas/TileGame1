@@ -5,6 +5,7 @@
  */
 package dev.tilegame1.ui;
 
+import dev.tilegame1.states.State;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -16,21 +17,26 @@ public class UIImageButton extends UIObject {
 
 	private BufferedImage[] images;
 	private ClickListener clicker;
+      
 	
-	public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
-		super(x, y, width, height);
+	public UIImageButton(int x, int y, int width, int height, BufferedImage[] images, String state, ClickListener clicker) {
+		super(x, y, width, height, state);
 		this.images = images;
 		this.clicker = clicker;
+                this.state = state;
 	}
+
+   
 
 	@Override
 	public void tick() {}
 
 	@Override
 	public void render(Graphics g) {
-		if(hovering)
+		if(hovering){
 			g.drawImage(images[1], (int) x, (int) y, width, height, null);
-		else
+                        g.drawRect(bounds.x, bounds.y, bounds.width+5, bounds.height+5);
+                }else
 			g.drawImage(images[0], (int) x, (int) y, width, height, null);
 	}
 
@@ -38,5 +44,9 @@ public class UIImageButton extends UIObject {
 	public void onClick() {
 		clicker.onClick();
 	}
+        
+        public void setState(String state){
+           this.state = state;
+        }
 
 }

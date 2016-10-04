@@ -11,30 +11,39 @@ import dev.tilegame1.states.BattleState;
 import dev.tilegame1.states.MenuState;
 import dev.tilegame1.states.State;
 import dev.tilegame1.tiles.Tile;
+import java.util.Random;
 
 public abstract class Creature extends Entity {
 	
         public static final int DEFAULT_HEALTH = 10;    
         public static final float DEFAULT_SPEED = 3.0f;
-        public static final int DEFAULT_CREATURE_WIDTH = 40,
-                                DEFAULT_CREATURE_HEIGHT = 40;
+        public static final int DEFAULT_CREATURE_WIDTH = 35,
+                                DEFAULT_CREATURE_HEIGHT = 35;
         
 	protected int health;
         protected float speed;
         protected float xMove, yMove;
+   
+     
         private BattleState battleState;
+        private MenuState menuState;
 	public Creature(Handler handler, float x, float y, int width, int height) {
 		super(handler, x, y, width, height);
 		health = DEFAULT_HEALTH;
                 speed = DEFAULT_SPEED;
                 xMove = 0;
                 yMove = 0;
+                
+              
 	}
 public void move(){
                 if (!checkEntityCollisions(xMove, 0f)) 
 		moveX();
                 if (!checkEntityCollisions(0f, yMove))
-		moveY();
+		moveY(); 
+                
+                //System.out.println(handler.getWorld().getTile((int)xMove,(int)yMove).getBattle());
+                 
 	}
 	
 	public void moveX(){
@@ -47,8 +56,11 @@ public void move(){
 			}else{
 				x = tx * Tile.TILEWIDTH - bounds.x - bounds.width -1;
 			}
-                        if (handler.getWorld().getTile(tx, (int) ((y + bounds.y) / Tile.TILEHEIGHT)).getBattle() == true){
-                        System.out.println("Batalla");
+                        if (Entrarbatalla() == 1){
+                
+                                  State.setState(handler.getGame().battleState);
+                         
+                      
                     }
 			
 		}else if(xMove < 0){//Moving left
@@ -60,8 +72,11 @@ public void move(){
 			}else{
 				x = tx * Tile.TILEWIDTH + Tile.TILEWIDTH - bounds.x;
 			}
-			if (handler.getWorld().getTile(tx, (int) ((y + bounds.y) / Tile.TILEHEIGHT)).getBattle() == true){
-                        System.out.println("Batalla");
+			 if (Entrarbatalla() == 1){
+                       
+                                  State.setState(handler.getGame().battleState);
+                            
+                      
                     }
 		}
 	}
@@ -76,7 +91,12 @@ public void move(){
 			}else{
 				y = ty * Tile.TILEHEIGHT + Tile.TILEHEIGHT - bounds.y;
 			}
+                         if (Entrarbatalla() == 1){
                        
+                                  State.setState(handler.getGame().battleState);
+                         
+                      
+                    }
 			
 		}else if(yMove > 0){//Down
 			int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
@@ -87,8 +107,10 @@ public void move(){
 			}else{
 				y = ty * Tile.TILEHEIGHT - bounds.y - bounds.height - 1;
 			}
-                     if (Entrarbatalla()==1) {
-                        System.out.println("oli");
+                     if (Entrarbatalla() == 1){
+                   
+                                  State.setState(handler.getGame().battleState);
+                   
                     }
 
 			
@@ -106,11 +128,14 @@ public void move(){
     public int Entrarbatalla(){
         int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILEWIDTH;
         int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
-     if (handler.getWorld().getTile((int) ((x + bounds.x) / Tile.TILEHEIGHT),ty).getBattle() == true){
+     if (handler.getWorld().getTile((int) ((x + bounds.x) / Tile.TILEWIDTH),ty).getBattle() == true){
                         return 1;
                     }
-     if (handler.getWorld().getTile((int) ((x + bounds.x) / Tile.TILEHEIGHT),ty).getBattle() == true){
-                       return 1;
+//     if (handler.getWorld().getTile((int) ((x + bounds.x) / Tile.TILEWIDTH),ty).getBattle() == true){
+//                       return 1;
+//                    }
+     if (handler.getWorld().getTile(tx,(int) ((y + bounds.y) / Tile.TILEHEIGHT)).getBattle() == true){
+                        return 1;
                     }
      return 0;
     }

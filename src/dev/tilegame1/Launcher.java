@@ -9,7 +9,7 @@ package dev.tilegame1;
 public class Launcher {
 
 	public static void main(String[] args){
-		Game game = new Game("Tile Game!", 800, 800);
+		Game game = new Game("Tile Game!", 600, 500);
 		game.start();
 	}
 	

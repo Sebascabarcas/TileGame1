@@ -94,7 +94,7 @@ public class Player extends Creature {
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-                
+             
               
 	}
      

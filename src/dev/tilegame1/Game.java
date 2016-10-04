@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*Cara e verga rada*/
+
 package dev.tilegame1;
 
 import dev.tilegame1.Music.Music;
@@ -75,8 +75,9 @@ public class Game implements Runnable {
                 gameCamera = new GameCamera(handler,0,0 );
                 
 		gameState = new GameState(handler);
-		menuState = new MenuState(handler);
                 battleState = new BattleState(handler);
+		menuState = new MenuState(handler);
+                
 		State.setState(menuState);
                 
 	}

@@ -6,6 +6,7 @@
 package dev.tilegame1;
 
 import dev.tilegame1.entities.creatures.Creature;
+import dev.tilegame1.entities.creatures.Player;
 import dev.tilegame1.gfx.GameCamera;
 import dev.tilegame1.input.KeyManager;
 import dev.tilegame1.input.MouseManager;
@@ -16,6 +17,7 @@ public class Handler {
 	private Game game;
 	private World world;
 	private Creature creature;
+        private Player player;
 	public Handler(Game game){
 		this.game = game;
 	}
@@ -57,6 +59,10 @@ public class Handler {
 	}
         public Creature getCreature(){
         return creature;
+        }
+        
+        public Player getPlayer(){
+        return player;
         }
 
 }

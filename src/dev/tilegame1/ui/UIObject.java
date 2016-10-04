@@ -5,6 +5,7 @@
  */
 package dev.tilegame1.ui;
 
+import dev.tilegame1.states.State;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
@@ -20,12 +21,15 @@ import java.awt.event.MouseEvent;
 	protected int width, height;
 	protected Rectangle bounds;
 	protected boolean hovering = false;
+        protected String state;
+        
 	
-	public UIObject(float x, float y, int width, int height){
+	public UIObject(float x, float y, int width, int height, String state){
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+                this.state = state;
 		bounds = new Rectangle((int) x, (int) y, width, height);
 	}
 	
@@ -88,5 +92,17 @@ import java.awt.event.MouseEvent;
 	public void setHovering(boolean hovering) {
 		this.hovering = hovering;
 	}
+        
+        public String getState(){
+          return state; 
+        }
+
+        public Rectangle getBounds() {
+          return bounds;
+        }
+
+        public void setBounds(Rectangle bounds) {
+        this.bounds = bounds;
+        }
 
 }

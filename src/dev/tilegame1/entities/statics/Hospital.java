@@ -20,7 +20,7 @@ public class Hospital extends StaticEntity{
             
         bounds.x = 0;
         bounds.y = 60;
-        bounds.width = width + 5;
+        bounds.width = width ;
         bounds.height = height - 60;
     }
 
