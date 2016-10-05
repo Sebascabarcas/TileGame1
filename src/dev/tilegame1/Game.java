@@ -75,10 +75,10 @@ public class Game implements Runnable {
                 gameCamera = new GameCamera(handler,0,0 );
                 
 		gameState = new GameState(handler);
-                battleState = new BattleState(handler);
-		menuState = new MenuState(handler);
                 
-		State.setState(menuState);
+		menuState = new MenuState(handler);
+                battleState = new BattleState(handler);
+		State.setState(battleState);
                 
 	}
 	

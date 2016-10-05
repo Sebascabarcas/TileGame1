@@ -11,9 +11,9 @@ public class Assets {
 
     private static final int width = 32, height = 32, height1 = 24, width1 = 16;
 
-    public static BufferedImage player, dirt, grass, stone, tree, treebig, grama, hospital, tienda, arbol2, gym, batalla, flores;
-    public static BufferedImage[] player_down, player_up, player_left, player_right;
-    public static BufferedImage[] btn_start, run, fight, bag, pokemones, moves;
+    public static BufferedImage player, dirt, grass, stone, tree, treebig, grama, hospital, tienda, arbol2, gym, batalla, flores, moves;
+    public static BufferedImage[] player_down, player_up, player_left, player_right, pokemonsfront, pokemonsback;
+    public static BufferedImage[] btn_start, run, fight, bag, pokemones, Blankspace;
 
     public static void init() {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/res/textures/sheet.png"));
@@ -30,14 +30,29 @@ public class Assets {
         SpriteSheet Grass = new SpriteSheet(ImageLoader.loadImage("/res/textures/Grass.png"));
         SpriteSheet Flower = new SpriteSheet(ImageLoader.loadImage("/res/textures/Planta4.png"));
         SpriteSheet Moves = new SpriteSheet(ImageLoader.loadImage("/res/textures/Moves.png"));
+        SpriteSheet blankSpace = new SpriteSheet(ImageLoader.loadImage("/res/textures/BlankSpace.png"));
+       
+        pokemonsfront = new BufferedImage[151];
+        for (int i = 1; i <= 151; i++) {
+                    
+                      pokemonsfront[i-1]= ImageLoader.loadImage("/res/textures/Sprites/Sprites 151/"+i+".png").getSubimage(0, 0, 80, 80);
+                    
+        }
+         pokemonsback = new BufferedImage[151];
+        for (int i = 1; i <= 151; i++) {
+                    
+                    pokemonsback[i-1]= ImageLoader.loadImage("/res/textures/Sprites/BS/"+i+".png").getSubimage(0, 0, 64, 64);
+                    
+        } 
+        moves= Moves.crop(0, 0, 240 , 48);
         
-        moves= new BufferedImage[2];
-        moves[0] = Moves.crop(0, 0, 240 , 48);
-        moves[1] = Moves.crop(0, 0, 240 , 48);
         btn_start = new BufferedImage[2];
         btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);
         btn_start[1] = sheet.crop(width * 6, height * 5, width * 2, height);
 
+        Blankspace = new BufferedImage[2];
+        Blankspace[0] = blankSpace.crop(0, 0,16,48);
+        Blankspace[1] = blankSpace.crop(0, 0, 16, 48);
         run = new BufferedImage[2];
         run[0] = rb.crop(0, 0, 54, 18);
         run[1] = rb.crop(54, 0, 54, 18);

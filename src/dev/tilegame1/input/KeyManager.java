@@ -31,7 +31,7 @@ public class KeyManager implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;
                            lastbuttom = e.getKeyCode();
-             System.out.println(lastbuttom);
+            
 	}
 
     public boolean isUp() {

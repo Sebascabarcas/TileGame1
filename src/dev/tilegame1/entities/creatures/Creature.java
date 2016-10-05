@@ -16,8 +16,8 @@ import java.util.Random;
 public abstract class Creature extends Entity {
 	
         public static final int DEFAULT_HEALTH = 10;    
-        public static final float DEFAULT_SPEED = 3.0f;
-        public static final int DEFAULT_CREATURE_WIDTH = 35,
+        public static final float DEFAULT_SPEED = 2.0f;
+        public static final int DEFAULT_CREATURE_WIDTH = 28,
                                 DEFAULT_CREATURE_HEIGHT = 35;
         
 	protected int health;
@@ -59,7 +59,7 @@ public void move(){
                         if (Entrarbatalla() == 1){
                 
                                   State.setState(handler.getGame().battleState);
-                         
+                                 
                       
                     }
 			
