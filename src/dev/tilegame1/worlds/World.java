@@ -94,7 +94,7 @@ public class World {
         return t;
         
     }
-    
+     
     private void loadWorld(String path){
         String file = Utils.loadFileAsString(path);
         String[] tokens = file.split("\\s+");
@@ -109,7 +109,7 @@ public class World {
                 tiles[x][y] = Utils.parseInt(tokens[((x + y * width) + 4)]);
             }
         }
-        Music.TOWN.loop();
+      //  Music.TOWN.loop();
         }
     public int getWidth(){
        return width;

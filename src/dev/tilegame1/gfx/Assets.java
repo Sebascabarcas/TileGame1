@@ -5,16 +5,18 @@
  */
 package dev.tilegame1.gfx;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 
 public class Assets {
 
     private static final int width = 32, height = 32, height1 = 24, width1 = 16;
-
-    public static BufferedImage player, dirt, grass, stone, tree, treebig, grama, hospital, tienda, arbol2, gym, batalla, flores, moves;
+    public static BufferedImage player, dirt,heal, grass, stone, tree, treebig, grama, hospital, escoger, tienda, arbol2, gym, batalla, flores, moves, hp,textinput;
     public static BufferedImage[] player_down, player_up, player_left, player_right, pokemonsfront, pokemonsback;
     public static BufferedImage[] btn_start, run, fight, bag, pokemones, Blankspace;
-
+    public static Image menu; //= new ImageIcon("/res/textures/menu.gif").getImage();
     public static void init() {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/res/textures/sheet.png"));
         SpriteSheet sheetplayer = new SpriteSheet(ImageLoader.loadImage("/res/textures/dog.png"));
@@ -22,6 +24,7 @@ public class Assets {
         SpriteSheet sheetRecursosPng = new SpriteSheet(ImageLoader.loadImage("/res/textures/spritesAmbienteAux.png"));
         SpriteSheet bb = new SpriteSheet(ImageLoader.loadImage("/res/textures/bb.png"));
         SpriteSheet rb = new SpriteSheet(ImageLoader.loadImage("/res/textures/rb.png"));
+       // SpriteSheet sb = new SpriteSheet(ImageLoader.loadImage("/res/textures/rb.png"));
         SpriteSheet fb = new SpriteSheet(ImageLoader.loadImage("/res/textures/fb.png"));
         SpriteSheet bagb = new SpriteSheet(ImageLoader.loadImage("/res/textures/bagb.png"));
         SpriteSheet pb = new SpriteSheet(ImageLoader.loadImage("/res/textures/pb.png"));
@@ -32,24 +35,31 @@ public class Assets {
         SpriteSheet Moves = new SpriteSheet(ImageLoader.loadImage("/res/textures/Moves.png"));
         SpriteSheet blankSpace = new SpriteSheet(ImageLoader.loadImage("/res/textures/BlankSpace.png"));
        
-        pokemonsfront = new BufferedImage[151];
+        pokemonsfront = new BufferedImage[152];
         for (int i = 1; i <= 151; i++) {
                     
-                      pokemonsfront[i-1]= ImageLoader.loadImage("/res/textures/Sprites/Sprites 151/"+i+".png").getSubimage(0, 0, 80, 80);
+                      pokemonsfront[i]= ImageLoader.loadImage("/res/textures/Sprites/Sprites 151/"+i+".png").getSubimage(0, 0, 80, 80);
                     
         }
-         pokemonsback = new BufferedImage[151];
+         pokemonsback = new BufferedImage[152];
         for (int i = 1; i <= 151; i++) {
                     
-                    pokemonsback[i-1]= ImageLoader.loadImage("/res/textures/Sprites/BS/"+i+".png").getSubimage(0, 0, 64, 64);
+                    pokemonsback[i]= ImageLoader.loadImage("/res/textures/Sprites/BS/"+i+".png").getSubimage(0, 0, 64, 64);
                     
         } 
+        
+       
+        hp = ImageLoader.loadImage("/res/textures/hp.png").getSubimage(0, 1, 8, 1);
+        menu = ImageLoader.loadImage("/res/textures/m.png");
+        escoger = ImageLoader.loadImage("/res/textures/escoger.png");
+        textinput = ImageLoader.loadImage("/res/textures/tinput.png").getSubimage(0, 0, 240, 160);
+        heal = ImageLoader.loadImage("/res/textures/heal.png");
         moves= Moves.crop(0, 0, 240 , 48);
         
         btn_start = new BufferedImage[2];
         btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);
         btn_start[1] = sheet.crop(width * 6, height * 5, width * 2, height);
-
+        
         Blankspace = new BufferedImage[2];
         Blankspace[0] = blankSpace.crop(0, 0,16,48);
         Blankspace[1] = blankSpace.crop(0, 0, 16, 48);

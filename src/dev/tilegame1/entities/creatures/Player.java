@@ -11,12 +11,18 @@ import dev.tilegame1.Handler;
 import dev.tilegame1.gfx.Animation;
 import dev.tilegame1.gfx.Assets;
 import dev.tilegame1.input.KeyManager;
+import dev.tilegame1.pokemons.Loader;
+import dev.tilegame1.pokemons.Pokemon;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Player extends Creature {
 
 	//Animations
+        private Pokemon[] pokemon;
+        private Loader loader;
         private Animation animDown, animUp, animLeft, animRight;
         private int lastMov;
         private int last;
@@ -29,7 +35,11 @@ public class Player extends Creature {
         bounds.y = 33;
         bounds.width = 23;
         bounds.height = 5;
-                
+            /*try {
+                pokemon= loader.readPokemon();
+            } catch (Exception ex) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
                 //Animations
                 animDown = new Animation(120, Assets.player_down);
                 animUp =new Animation(120, Assets.player_up);
@@ -89,6 +99,15 @@ public class Player extends Creature {
             if (handler.getKeyManager().right) {
                 xMove = speed;
             }
+        }
+        
+        public Pokemon getPokemon(){
+            try {
+                pokemon= loader.readPokemon();
+            } catch (Exception ex) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return pokemon[1];
         }
 
 	@Override

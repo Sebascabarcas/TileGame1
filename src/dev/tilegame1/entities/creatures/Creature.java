@@ -6,8 +6,10 @@
 package dev.tilegame1.entities.creatures;
 
 import dev.tilegame1.Handler;
+import dev.tilegame1.Music.Music;
 import dev.tilegame1.entities.Entity;
 import dev.tilegame1.states.BattleState;
+import static dev.tilegame1.states.BattleState.currenthp;
 import dev.tilegame1.states.MenuState;
 import dev.tilegame1.states.State;
 import dev.tilegame1.tiles.Tile;
@@ -23,8 +25,9 @@ public abstract class Creature extends Entity {
 	protected int health;
         protected float speed;
         protected float xMove, yMove;
-   
-     
+      
+        private Random random;
+        private int ran;
         private BattleState battleState;
         private MenuState menuState;
 	public Creature(Handler handler, float x, float y, int width, int height) {
@@ -33,8 +36,9 @@ public abstract class Creature extends Entity {
                 speed = DEFAULT_SPEED;
                 xMove = 0;
                 yMove = 0;
-                
-              
+                ran = 2;
+                random = new Random();
+             
 	}
 public void move(){
                 if (!checkEntityCollisions(xMove, 0f)) 
@@ -56,11 +60,14 @@ public void move(){
 			}else{
 				x = tx * Tile.TILEWIDTH - bounds.x - bounds.width -1;
 			}
-                        if (Entrarbatalla() == 1){
-                
-                                  State.setState(handler.getGame().battleState);
-                                 
-                      
+                        if (Entrarbatalla() == 1 && random.nextInt(70) == ran){
+                             if (BattleState.currenthp>0) {
+                                State.setState(handler.getGame().battleState);
+                                  BattleState.inBattle=true;
+                                  Music.TOWN.stop();
+                                  Music.MENU.play();
+                            }
+                                  
                     }
 			
 		}else if(xMove < 0){//Moving left
@@ -72,11 +79,14 @@ public void move(){
 			}else{
 				x = tx * Tile.TILEWIDTH + Tile.TILEWIDTH - bounds.x;
 			}
-			 if (Entrarbatalla() == 1){
+			 if (Entrarbatalla() == 1 && random.nextInt(70) == ran){
                        
-                                  State.setState(handler.getGame().battleState);
-                            
-                      
+                                   if (BattleState.currenthp>0) {
+                                State.setState(handler.getGame().battleState);
+                                  BattleState.inBattle=true;
+                                  Music.TOWN.stop();
+                                  Music.MENU.play();
+                            }
                     }
 		}
 	}
@@ -91,11 +101,14 @@ public void move(){
 			}else{
 				y = ty * Tile.TILEHEIGHT + Tile.TILEHEIGHT - bounds.y;
 			}
-                         if (Entrarbatalla() == 1){
+                         if (Entrarbatalla() == 1 && random.nextInt(70) == ran){
                        
-                                  State.setState(handler.getGame().battleState);
-                         
-                      
+                                   if (BattleState.currenthp>0) {
+                                State.setState(handler.getGame().battleState);
+                                  BattleState.inBattle=true;
+                                  Music.TOWN.stop();
+                                  Music.MENU.play();
+                            }
                     }
 			
 		}else if(yMove > 0){//Down
@@ -107,10 +120,15 @@ public void move(){
 			}else{
 				y = ty * Tile.TILEHEIGHT - bounds.y - bounds.height - 1;
 			}
-                     if (Entrarbatalla() == 1){
+                     if (Entrarbatalla() == 1 && random.nextInt(70) == ran){
                    
-                                  State.setState(handler.getGame().battleState);
-                   
+                                   if (BattleState.currenthp>0) {
+                                State.setState(handler.getGame().battleState);
+                                  BattleState.inBattle=true;
+                                  Music.TOWN.stop();
+                                  Music.MENU.play();
+                            }else 
+                                       System.out.println(currenthp);
                     }
 
 			

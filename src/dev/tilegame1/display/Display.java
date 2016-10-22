@@ -7,6 +7,8 @@ package dev.tilegame1.display;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
@@ -32,6 +34,9 @@ public class Display {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
+                Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/textures/icon2.png"));
+                frame.setIconImage(icon);
+                
 		frame.setVisible(true);
 		
 		canvas = new Canvas();
@@ -40,6 +45,8 @@ public class Display {
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setFocusable(false);
 		
+                
+                
 		frame.add(canvas);
 		frame.pack();
 	}

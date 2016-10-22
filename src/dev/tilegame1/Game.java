@@ -16,13 +16,23 @@ import dev.tilegame1.gfx.Assets;
 import dev.tilegame1.gfx.GameCamera;
 import dev.tilegame1.input.KeyManager;
 import dev.tilegame1.input.MouseManager;
+import dev.tilegame1.pokemons.Loader;
+import dev.tilegame1.pokemons.Pokemon;
+import dev.tilegame1.pokemons.PokemonMov;
+import dev.tilegame1.pokemons.PokemonType;
 import dev.tilegame1.states.BattleState;
 import dev.tilegame1.states.GameState;
 import dev.tilegame1.states.MenuState;
+import dev.tilegame1.states.SelectState;
 import dev.tilegame1.states.State;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Game implements Runnable {
-
+        private Loader loader;
+       // private PokemonMov[] pokemonListM;
+        private PokemonType[] pokemonListType;
 	private Display display;
 	private int width, height;
 	public String title;
@@ -37,6 +47,7 @@ public class Game implements Runnable {
 	public State gameState;
 	public State menuState;
         public State battleState;
+        public State selectState;
 	
 	//Input
 	private KeyManager keyManager;
@@ -59,6 +70,7 @@ public class Game implements Runnable {
 		this.title = title;
 		keyManager = new KeyManager();
                 mouseManager = new MouseManager();
+                loader = new Loader();
 
 	}
 	
@@ -70,15 +82,18 @@ public class Game implements Runnable {
                 display.getCanvas().addMouseListener(mouseManager);
                 display.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
-	       
+                
+	      
                 handler = new Handler(this);
                 gameCamera = new GameCamera(handler,0,0 );
                 
 		gameState = new GameState(handler);
-                
+               
 		menuState = new MenuState(handler);
+                selectState = new SelectState(handler);
                 battleState = new BattleState(handler);
-		State.setState(battleState);
+		State.setState(menuState);
+        
                 
 	}
 	
@@ -105,8 +120,7 @@ public class Game implements Runnable {
 		if(State.getState() != null)
 			State.getState().render(g);
                 
-           
-		
+               
 		//End Drawing!
 		bs.show();
 		g.dispose();
@@ -184,7 +198,16 @@ public class Game implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+                
 	}
+
+    public Display getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Display display) {
+        this.display = display;
+    }
 	
 }
 

@@ -10,6 +10,7 @@ import dev.tilegame1.entities.creatures.Player;
 import dev.tilegame1.gfx.GameCamera;
 import dev.tilegame1.input.KeyManager;
 import dev.tilegame1.input.MouseManager;
+import dev.tilegame1.ui.ClickListener;
 import dev.tilegame1.worlds.World;
 
 public class Handler {
@@ -18,6 +19,7 @@ public class Handler {
 	private World world;
 	private Creature creature;
         private Player player;
+        private ClickListener click;
 	public Handler(Game game){
 		this.game = game;
 	}
@@ -64,6 +66,14 @@ public class Handler {
         public Player getPlayer(){
         return player;
         }
+
+    public ClickListener getClick() {
+        return click;
+    }
+
+    public void setClick(ClickListener click) {
+        this.click = click;
+    }
 
 }
 
